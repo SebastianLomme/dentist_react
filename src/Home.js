@@ -1,17 +1,14 @@
 import React from "react";
 import "./App.css";
-
-
-
-
-
-
-// export default () => <div>Home!</div>;
+import { useSelector } from "react-redux";
 
 
 function Home() {
+    const loading = useSelector(state => state.Patient.IsLoading)
+    console.log(loading)
     return (
-        <div>home!</div>
+        
+        <div>{loading ? "...Loading" : "Home!"}</div>
     )
 }
 

@@ -1,9 +1,8 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { useEffect } from "react";
-import { fetchPatientData } from "./redux/action/index";
-import { useDispatch } from "react-redux";
+import PatientData from "./PatientData";
+
 
 
 import Home from "./Home";
@@ -12,18 +11,10 @@ import Day from "./Day";
 
 import generateRandomAppointments from "./utils";
 
-
-
-
-
 const appointments = generateRandomAppointments(70);
 
 const App = () => {
-  const dispatch = useDispatch()
-  useEffect(() => {
-      dispatch(fetchPatientData())
-         // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  PatientData()
   return (
     <Router>
       <div>

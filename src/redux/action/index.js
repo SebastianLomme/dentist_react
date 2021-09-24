@@ -23,12 +23,11 @@ export const fetchPatientDataFailure = error => {
 
 export const fetchPatientData = () => {
     return (dispatch) => {
-        dispatch(fetchPatientDataRequest)
+        dispatch(fetchPatientDataRequest())
         axios({
             method: 'get',
             url: url,
             responseType: 'json',
-
         })
             .then(response => {
                 const patients = response.data
