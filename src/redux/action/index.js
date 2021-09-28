@@ -39,4 +39,33 @@ export const fetchPatientData = () => {
         }
 };
 
-const url = "https://my.api.mockaroo.com/person.json?key=37c83670"
+export const makeNewAppointment = (appointment) => {
+    return {
+        type: "MAKE_NEW_APPOINTMENT",
+        payload: appointment,
+    }
+}
+
+export const makeNewDentist = (dentist) => {
+    return {
+        type: "MAKE_NEW_DENTIST",
+        payload: dentist,
+    }
+}
+
+export const makeNewAssistent = (assistant) => {
+    return {
+        type: "MAKE_NEW_ASSISTENT",
+        payload: assistant,
+    }
+}
+
+export const makeNewPatient = (patient) => {
+    return {
+        type: "MAKE_NEW_PATIENT",
+        payload: patient,
+    }
+}
+
+const url = "https://jsonplaceholder.typicode.com/users"
+// const url = "https://my.api.mockaroo.com/persons.json?key=a08fd030"

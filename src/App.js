@@ -1,20 +1,23 @@
-import React from "react";
+import React  from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import PatientData from "./PatientData";
-
+import { useSelector } from "react-redux";
 
 
 import Home from "./Home";
 import Calendar from "./Calendar";
 import Day from "./Day";
 
-import generateRandomAppointments from "./utils";
+// import generateRandomAppointments from "./utils";
+import { GetApointment } from "./Appointment";
 
-const appointments = generateRandomAppointments(70);
+// const appointments = generateRandomAppointments(70);
+// console.log("appointments: ", appointments)
+
 
 const App = () => {
-  PatientData()
+  const appointmentState = useSelector(state => state.Appointment.allAppointments)
+  GetApointment()
   return (
     <Router>
       <div>
@@ -34,10 +37,10 @@ const App = () => {
         <main>
           <Switch>
             <Route path="/calendar">
-              <Calendar appointments={appointments} />
+              <Calendar appointments={appointmentState} />
             </Route>
             <Route path="/day">
-              <Day appointments={appointments.filter((app) => app.day === 1)} />
+              <Day appointments={appointmentState.filter((app) => app.day === 1)} />
             </Route>
             <Route path="/">
               <Home />
