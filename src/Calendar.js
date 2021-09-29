@@ -14,6 +14,7 @@ const divideByDay = appointments => {
   return appointmentsByDay;
 };
 
+/* eslint import/no-anonymous-default-export: [2, {"allowArrowFunction": true}] */
 export default ({ appointments }) => {
   const appointmentsByDay = divideByDay(appointments);
 

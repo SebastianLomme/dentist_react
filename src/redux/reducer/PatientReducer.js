@@ -22,10 +22,11 @@ const PatientData = (state = initialState, action) => {
                 ...state,
                 IsLoading: true,
             };
-            case "FETCH_PATIENT_SUCCES":
+        case "FETCH_PATIENT_SUCCES":
+            console.log(action.payload)
                 return {
                     ...state,
-                    Patients: action.payload,
+                    Patients: [...action.payload],
                     IsLoading: false,
                     Error: "",
                 };

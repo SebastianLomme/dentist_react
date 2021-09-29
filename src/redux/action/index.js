@@ -67,5 +67,12 @@ export const makeNewPatient = (patient) => {
     }
 }
 
+export const setToSick = (sick) => {
+    return {
+        type: "SET_TO_SICK",
+        payload: sick,
+    }
+}
+
 const url = "https://jsonplaceholder.typicode.com/users"
 // const url = "https://my.api.mockaroo.com/persons.json?key=a08fd030"

@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import PatientData from "./PatientData";
 import { useSelector, useDispatch } from "react-redux";
 import { makeNewAppointment } from "./redux/action/index";
+import { v4 as uuidv4 } from 'uuid';
+
 
 export function GetApointment() {
 const dispatch = useDispatch();
@@ -29,7 +31,8 @@ const getRandomTime = () => {
 const getRandomDay = () => Math.floor(Math.random() * 28) + 1;
 
 
-const generateRandomAppointment = () => ({
+    const generateRandomAppointment = () => ({
+    id: uuidv4(),
     day: getRandomDay(),
     time: getRandomTime(),
     patient: getRandomName(patient),
