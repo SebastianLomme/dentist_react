@@ -46,6 +46,13 @@ export const makeNewAppointment = (appointment) => {
     }
 }
 
+export const setAllAppointments = (appointment) => {
+    return {
+        type: "SET_ALL_APPOINTMENTS",
+        payload: appointment,
+    }
+}
+
 export const makeNewDentist = (dentist) => {
     return {
         type: "MAKE_NEW_DENTIST",

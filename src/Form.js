@@ -30,13 +30,14 @@ export default function Form(props) {
                 value={input.date_birth}
             />
             <div>
-                <label htmlFor="gender" value={input.gender} onChange={handleChange}>
+                <label htmlFor="gender" value={input.gender} >
                     <input
                         type="radio"
                         name="gender"
                         id={`male ${button}`}
                         value="male"
                         checked={input.gender === "male"}
+                        onChange={handleChange}
                     />
 
                     <label
@@ -47,6 +48,7 @@ export default function Form(props) {
                         id={`female ${button}`}
                         value="female"
                         checked={input.gender === "female"}
+                        onChange={handleChange}
                     />
                     <label htmlFor={`female ${button}`}>female: </label>
 
@@ -56,6 +58,7 @@ export default function Form(props) {
                         id={`Non-binary ${button}`}
                         value="Non-binary"
                         checked={input.gender === "Non-binary"}
+                        onChange={handleChange}
                     />
                     <label htmlFor={`Non-binary ${button}`}>Non-binary: </label>
                 </label>

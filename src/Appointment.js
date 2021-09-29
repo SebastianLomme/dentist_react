@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import PatientData from "./PatientData";
 import { useSelector, useDispatch } from "react-redux";
-import { makeNewAppointment } from "./redux/action/index";
+import { setAllAppointments } from "./redux/action/index";
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -33,7 +33,7 @@ const getRandomDay = () => Math.floor(Math.random() * 28) + 1;
 
     const generateRandomAppointment = () => ({
     id: uuidv4(),
-    day: getRandomDay(),
+    day: getRandomDay().toString(),
     time: getRandomTime(),
     patient: getRandomName(patient),
     dentist: getRandomName(dentist),
@@ -49,7 +49,7 @@ const generateRandomAppointments = (num) =>
 
 useEffect(() => {
     if (patient[0].name !== "") {
-    dispatch(makeNewAppointment(allAppointmentsArray));
+    dispatch(setAllAppointments(allAppointmentsArray));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [loading]);
