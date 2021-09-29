@@ -8,6 +8,10 @@ body {
   background-color: lightslategray;
 }
 
+h1 {
+  padding: 20px 0;
+}
+
 nav li {
   display: inline-block;
   list-style: none;
@@ -37,3 +41,24 @@ a:visited {
 .sick {
   background: red !important;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  padding: 20px;
+}
+
+input[type="radio"] {
+margin-right: 10px;
+}
+
+.form-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+
+
