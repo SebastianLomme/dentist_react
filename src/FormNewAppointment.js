@@ -8,13 +8,16 @@ import {
 
 function FormNewAppointment() {
     const dispatch = useDispatch()
-    const dentist = useSelector((state) => state.Patient.dentist)
-    const assistant = useSelector((state) => state.Patient.assistants)
+    const dentist = useSelector((state) => state.Appointment.dentist)
+    const assistant = useSelector((state) => state.Appointment.assistants)
     const patients = useSelector((state) => state.Patient.Patients)
+    const Appointments = useSelector((state => state.Appointment.allAppointments))
     const [input, setInput] = useState({
         patient: "",
         assistant: "",
         dentist: "",
+        day: "",
+        time:"",
     });
 
     const optionArrayDentist = dentist.map(worker =>
@@ -30,20 +33,40 @@ function FormNewAppointment() {
     )
 
     const handleSubmitNewAppointment = (e) => {
+        const filterArray = Appointments.filter(item => item.dentist === input.dentist)
+        const dentistArray = []
+        filterArray.forEach(item => {
+            if (item.day === Number(input.day) && item.time === Number(input.time)) {
+                console.log("item: ", item.day, item.time)
+                console.log("error")
+                dentistArray.push(item)
+                setInput({
+                    error: "Kies een andere tandarts",
+                    patient: "",
+                    assistant: "",
+                    dentist: "",
+                    time: "",
+                    day: "",
+                })
+                console.log("input: ",input.error)
+            } 
+        });
+        console.log(dentistArray)
+        if ( dentistArray.length === 0) {
+            console.log("added")
+            dispatch(makeNewAppointment({
+                ...input,
+                id: uuidv4()
+            }))
+            setInput({
+                patient: "",
+                assistant: "",
+                dentist: "",
+                time: "",
+                day: "",
+            })
+        }
         e.preventDefault()
-        dispatch(makeNewAppointment({
-            ...input,
-            id: uuidv4()
-        }))
-        console.log(input)
-        setInput({
-            patient: "",
-            assistant: "",
-            dentist: "",
-            time: "",
-            day: "",
-        })
-        console.log(input)
     }
 
     const handleChange = (e) => {
@@ -64,6 +87,7 @@ function FormNewAppointment() {
                 id="patient"
                 onChange={handleChange}
                 value={input.patient}>
+                <option value="">Kies een Patient</option>
                 {optionArrayPasients}
             </select>
             <label
@@ -72,7 +96,8 @@ function FormNewAppointment() {
                 name="assistant"
                 id="assistant"
                 onChange={handleChange}
-                value={input.assistent}>
+                value={input.assistant}>
+                <option value="">Kies een Assisistent</option>
                 {optionArrayAssistent}
             </select>
             <label
@@ -82,6 +107,7 @@ function FormNewAppointment() {
                 id="dentist"
                 onChange={handleChange}
                 value={input.dentist}>
+                <option value="">{ input.error === undefined || "" ? "Kies een tandarts" : input.error }</option>
                 {optionArrayDentist}
             </select>
             <select
@@ -106,7 +132,7 @@ function FormNewAppointment() {
                 id="day"
                 onChange={handleChange}
                 value={input.day}>
-                                <option value="">Kies een dag</option>
+                <option value="">Kies een dag</option>
                 <option value="1">Maandag</option>
                 <option value="2">Dinsdag</option>
                 <option value="3">Woensdag</option>

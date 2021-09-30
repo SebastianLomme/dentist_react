@@ -4,7 +4,6 @@ export default function Form(props) {
     const { handleChange, handleSubmit, button, input } = props
     return (
         <form onSubmit={handleSubmit}>
-            {console.log(input)}
             <label htmlFor="name">Voornaam: </label>
             <input type="text" name="name" id="name" onChange={handleChange} value={input.name} />
             <label htmlFor="surname">Achternaam: </label>

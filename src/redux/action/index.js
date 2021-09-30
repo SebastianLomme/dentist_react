@@ -81,5 +81,12 @@ export const setToSick = (sick) => {
     }
 }
 
+export const removeAppointment = (appointmentid) => {
+    return {
+        type: "REMOVE_APPOINTMENT",
+        payload: appointmentid,
+}
+}
+
 const url = "https://jsonplaceholder.typicode.com/users"
 // const url = "https://my.api.mockaroo.com/persons.json?key=a08fd030"

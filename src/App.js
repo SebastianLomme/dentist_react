@@ -17,7 +17,6 @@ import { GetApointment } from "./Appointment";
 
 const App = () => {
   const appointmentState = useSelector(state => state.Appointment.allAppointments)
-  console.log(appointmentState.filter((app) => app.day === "1" ))
   GetApointment()
   return (
     <Router>
@@ -41,7 +40,7 @@ const App = () => {
               <Calendar appointments={appointmentState} />
             </Route>
             <Route path="/day">
-              <Day appointments={appointmentState.filter((app) => app.day === "1")} />
+              <Day appointments={appointmentState.filter((app) => app.day === 1)} />
             </Route>
             <Route path="/">
               <Home />

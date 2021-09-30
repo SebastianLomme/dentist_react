@@ -8,8 +8,8 @@ import { v4 as uuidv4 } from "uuid";
 
 function FormSetSick() {
     const dispatch = useDispatch();
-    const dentist = useSelector((state) => state.Patient.dentist)
-    const assistant = useSelector((state) => state.Patient.assistants)
+    const dentist = useSelector((state) => state.Appointment.dentist)
+    const assistant = useSelector((state) => state.Appointment.assistants)
     const listWorkers = [...dentist, ...assistant]
 
     const [input, setInput] = useState({
@@ -20,7 +20,6 @@ function FormSetSick() {
     const handleSubmitSick = (e) => {
         e.preventDefault()
         dispatch(setToSick(input.ziekmelden))
-        console.log("submit", input.ziekmelden)
         setInput({
             ziekmelden: "",
         })

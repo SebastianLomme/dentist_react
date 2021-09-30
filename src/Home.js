@@ -6,6 +6,7 @@ import FormDentist from "./FormDentist";
 import FormAssistent from "./FormAssistent";
 import FormSetSick from "./FormSetSick";
 import FormNewAppointment from "./FormNewAppointment";
+import FormRemoveAppointment from "./FormRemoveAppointment";
 
 function Home() {
   const loading = useSelector((state) => state.Patient.IsLoading);
@@ -24,6 +25,7 @@ function Home() {
 
       <div>
         <FormNewAppointment />
+        <FormRemoveAppointment />
       </div>
     </div>
   );

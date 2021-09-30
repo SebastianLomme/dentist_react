@@ -1,5 +1,3 @@
-import data from "../../data";
-
 const initialState = {
     IsLoading: false,
     Patients: [{
@@ -12,7 +10,6 @@ const initialState = {
         tel: "",
     }
     ],
-    ...data,
 };
 
 const PatientData = (state = initialState, action) => {
@@ -23,37 +20,23 @@ const PatientData = (state = initialState, action) => {
                 IsLoading: true,
             };
         case "FETCH_PATIENT_SUCCES":
-            console.log(action.payload)
-                return {
-                    ...state,
-                    Patients: [...action.payload],
-                    IsLoading: false,
-                    Error: "",
-                };
-                case "FETCH_PATIENT_FAILURE":
+            return {
+                ...state,
+                Patients: [...action.payload],
+                IsLoading: false,
+                Error: "",
+            };
+        case "FETCH_PATIENT_FAILURE":
             return {
                 ...state,
                 Error: action.payload,
                 IsLoading: false,
             };
-        case "MAKE_NEW_DENTIST":
-            console.log("click", state.dentist)
+        case "MAKE_NEW_PATIENT":
             return {
                 ...state,
-                dentist: [...state.dentist, action.payload]
-            };
-        case "MAKE_NEW_ASSISTENT":
-            console.log("click", state.assistants)
-            return {
-                ...state,
-                assistants: [...state.assistants, action.payload]
-            };
-            case "MAKE_NEW_PATIENT":
-                console.log("click", state.Patients)
-                return {
-                    ...state,
-                    Patients: [...state.Patients, action.payload]  
-                }
+                Patients: [...state.Patients, action.payload]
+            }
         default: return state
     }
 };
