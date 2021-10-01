@@ -28,7 +28,25 @@ export function GetApointment() {
         }
     };
 
-    const getRandomDay = () => Math.floor(Math.random() * 28) + 1;
+    // const getRandomDay = () => Math.floor(Math.random() * 28) + 1;
+
+    const getRandomDay = () => {
+        let day;
+        while (true) {
+            day = Math.floor(Math.random() * 28) + 1;
+            if (day > 0 && day < 6) {
+                return day
+            } else if (day > 7 && day < 13) {
+                return day
+            } else if (day > 14 && day < 20) {
+                return day
+            } else if (day > 21 && day < 27) {
+                return day
+            }
+        }
+    };
+
+
 
 
     const generateRandomAppointment = () => ({

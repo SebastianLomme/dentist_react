@@ -27,6 +27,28 @@ const AppointmentReducer = (state = initialState, action) => {
                 ...state,
                 allAppointments: newArray,
             }
+        case "MOVE_APPOINTMENT":
+            const object = state.allAppointments.filter(appointment => appointment.id === action.payload.appointment)
+            const item = object[0]
+            const newAppointment = {
+                ...item,
+                time: Number(action.payload.time),
+                day: Number(action.payload.day),
+            }
+            const restArray = state.allAppointments.filter(appointment => appointment.id !== action.payload.appointment)
+            console.log(action.payload)
+            console.log(object)
+            console.log(item.time, " time:")
+            return {
+                ...state,
+                allAppointments: [newAppointment, ...restArray].sort((a, b) => a.time < b.time ? 1 : -1).sort((a, b) => a.day > b.day ? 1 : -1)
+            }
+            case "SET_PATIENT_SICK":
+                const newArraySick = state.allAppointments.filter(appointment => appointment.patient !== action.payload)
+                return {
+                    ...state,
+                    allAppointments: newArraySick,
+                }
         case "MAKE_NEW_DENTIST":
             return {
                 ...state,

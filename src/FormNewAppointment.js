@@ -33,26 +33,38 @@ function FormNewAppointment() {
     )
 
     const handleSubmitNewAppointment = (e) => {
-        const filterArray = Appointments.filter(item => item.dentist === input.dentist)
+        const filterArrayDentist = Appointments.filter(item => item.dentist === input.dentist)
         const dentistArray = []
-        filterArray.forEach(item => {
+        const filterArrayAssistant = Appointments.filter(item => item.assistant === input.assistant)
+        const AssistantArray = []
+        filterArrayDentist.forEach(item => {
             if (item.day === Number(input.day) && item.time === Number(input.time)) {
                 console.log("item: ", item.day, item.time)
                 console.log("error")
                 dentistArray.push(item)
                 setInput({
-                    error: "Kies een andere tandarts",
-                    patient: "",
-                    assistant: "",
+                    ...input,
+                    errorDentist: "Kies een andere tandarts",
                     dentist: "",
-                    time: "",
-                    day: "",
                 })
-                console.log("input: ",input.error)
+                console.log("input: ",input)
+            } 
+        });
+        filterArrayAssistant.forEach(item => {
+            if (item.day === Number(input.day) && item.time === Number(input.time)) {
+                console.log("item: ", item.day, item.time)
+                console.log("error")
+                AssistantArray.push(item)
+                setInput({
+                    ...input,
+                    errorAssistant: "Kies een andere assistant",
+                    assistant: "",
+                })
+                console.log("input: ",input)
             } 
         });
         console.log(dentistArray)
-        if ( dentistArray.length === 0) {
+        if ( dentistArray.length === 0 &&  AssistantArray.length === 0 ) {
             console.log("added")
             dispatch(makeNewAppointment({
                 ...input,
@@ -97,7 +109,7 @@ function FormNewAppointment() {
                 id="assistant"
                 onChange={handleChange}
                 value={input.assistant}>
-                <option value="">Kies een Assisistent</option>
+                <option value="">{ input.errorAssistant === undefined || "" ? "Kies een Assistant" : input.errorAssistant}</option>
                 {optionArrayAssistent}
             </select>
             <label
@@ -107,7 +119,7 @@ function FormNewAppointment() {
                 id="dentist"
                 onChange={handleChange}
                 value={input.dentist}>
-                <option value="">{ input.error === undefined || "" ? "Kies een tandarts" : input.error }</option>
+                <option value="">{ input.errorDentist === undefined || "" ? "Kies een tandarts" : input.errorDentist }</option>
                 {optionArrayDentist}
             </select>
             <select

@@ -36,7 +36,7 @@ export const fetchPatientData = () => {
                 const errorMsg = error.message
                 dispatch(fetchPatientDataFailure(errorMsg))
             })
-        }
+    }
 };
 
 export const makeNewAppointment = (appointment) => {
@@ -85,7 +85,21 @@ export const removeAppointment = (appointmentid) => {
     return {
         type: "REMOVE_APPOINTMENT",
         payload: appointmentid,
+    }
 }
+
+export const setPatientSick = (patient) => {
+    return {
+        type: "SET_PATIENT_SICK",
+        payload: patient,
+    }
+}
+
+export const moveAppointment = (patient) => {
+    return {
+        type: "MOVE_APPOINTMENT",
+        payload: patient,
+    }
 }
 
 const url = "https://jsonplaceholder.typicode.com/users"
