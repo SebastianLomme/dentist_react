@@ -16,7 +16,6 @@ function MoveAppointment() {
 
     const handleSubmitMoveAppointment = (e) => {
         const [filterArray] = appointments.filter(appointment => appointment.id === input.appointment)
-        console.log("FilterArray: ",filterArray.dentist)
         e.preventDefault();
         const filterArrayDentist = appointments.filter(item => item.dentist === filterArray.dentist)
         const dentistArray = []

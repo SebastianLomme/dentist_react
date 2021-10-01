@@ -10,22 +10,13 @@ export function GetApointment() {
     const patient = useSelector((state) => state.Patient.Patients);
     const dentist = useSelector((state) => state.Appointment.dentist);
     const assistants = useSelector((state) => state.Appointment.assistants);
+    const appointments = useSelector(state => state.Appointment.allAppointments)
     const loading = useSelector((state) => state.Patient.IsLoading);
     PatientData();
 
     const getRandomName = (persons) => {
         const person = persons[Math.floor(Math.random() * persons.length)];
         return `${person.name} ${person.surname}`;
-    };
-
-    const getRandomTime = () => {
-        let hour;
-        while (true) {
-            hour = Math.floor(Math.random() * 24);
-            if (hour > 7 && hour < 18) {
-                return hour;
-            }
-        }
     };
 
     // const getRandomDay = () => Math.floor(Math.random() * 28) + 1;
@@ -46,17 +37,42 @@ export function GetApointment() {
         }
     };
 
+    const getRandomTreatmentType = () => {
+        const allTreatment = ["Gaatjes vullen", "Kroon zetten", "Tanden trekken", "Kaakchirurgie"];
+        const treatment = allTreatment[Math.floor(Math.random() * allTreatment.length)];
+        return treatment;
+    };
 
+    const generateRandomAppointment = () => {
+        const treatment = getRandomTreatmentType();
+        const getDentist = () => {
+            const fitDentist = dentist.filter(dentist => dentist.treatment_types.includes(treatment))
+            console.log("fitDentist", fitDentist)
+            const getDentist = fitDentist[Math.floor(Math.random() * fitDentist.length)]
+            return `${getDentist.name} ${getDentist.surname}`
+        }
 
+        const getRandomTime = () => {
+            let hour;
+            while (true) {
+                hour = Math.floor(Math.random() * 24);
+                if (hour > 7 && hour < 18) {
+                    return hour;
+                }
+            }
+        };
 
-    const generateRandomAppointment = () => ({
-        id: uuidv4(),
-        day: getRandomDay(),
-        time: getRandomTime(),
-        patient: getRandomName(patient),
-        dentist: getRandomName(dentist),
-        assistant: getRandomName(assistants),
-    });
+        return {
+            id: uuidv4(),
+            day: getRandomDay(),
+            time: getRandomTime(),
+            patient: getRandomName(patient),
+            dentist: getDentist(),
+            assistant: getRandomName(assistants),
+            treatment: treatment,
+        }
+
+    };
 
     const generateRandomAppointments = (num) =>
         Array(num)
