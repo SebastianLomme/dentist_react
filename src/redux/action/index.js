@@ -102,5 +102,5 @@ export const moveAppointment = (patient) => {
     }
 }
 
-const url = "https://jsonplaceholder.typicode.com/users"
-// const url = "https://my.api.mockaroo.com/persons.json?key=a08fd030"
+// const url = "https://jsonplaceholder.typicode.com/users"
+const url = "https://my.api.mockaroo.com/persons.json?key=a08fd030"
